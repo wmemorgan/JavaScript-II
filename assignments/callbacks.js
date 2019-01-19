@@ -22,12 +22,11 @@ const items = ['Pencil', 'Notebook', 'yo-yo', 'Gum'];
 */
 
 // Question #1
-function getLength(arr, cb) {
-  // getLength passes the length of the array into the callback.
-}
-
 // Solution Version 1
 function getLength(arr, cb) {
+  // getLength passes the length of the array into the callback.
+
+  // Solution
   return cb(arr.length)
 }
 
@@ -36,26 +35,22 @@ getLength(items, function(length) {
 })
 
 // Solution Version 2
-function displayLength(arr) {
-  console.log(arr.length)
-}
+// function displayLength(arr) {
+//   console.log(arr.length)
+// }
 
-function getLength(arr, cb) {
-  return cb(arr)
-}
+// function getLength(arr, cb) {
+//   return cb(arr)
+// }
 
-getLength(items, displayLength)
-
-
+//getLength(items, displayLength)
 
 // Question #2
 function last(arr, cb) {
   // last passes the last item of the array into the callback.
-}
 
-// Solution
-function last(arr, cb) {
-  return cb(arr[arr.length-1])
+  // Solution
+  return cb(arr[arr.length - 1])
 }
 
 last(items, function (item) {
@@ -65,30 +60,26 @@ last(items, function (item) {
 // Question #3
 function sumNums(x, y, cb) {
   // sumNums adds two numbers (x, y) and passes the result to the callback.
-}
 
-// Solution
-function sumNums(x, y, cb) {
+  // Solution
   const sum = x + y
   return cb(sum)
 }
 
-sumNums(164, 320, function(answer) {
+sumNums(6, 6, function(answer) {
   console.log(answer)
 })
 
 // Question #4
 function multiplyNums(x, y, cb) {
   // multiplyNums multiplies two numbers and passes the result to the callback.
-}
 
-// Solution
-function multiplyNums(x, y, cb) {
+  // Solution
   const product = x * y
   return cb(product)
 }
 
-multiplyNums(324, 875, function (answer) {
+multiplyNums(6, 6, function (answer) {
   console.log(answer)
 })
 
@@ -96,10 +87,8 @@ multiplyNums(324, 875, function (answer) {
 function contains(item, list, cb) {
   // contains checks if an item is present inside of the given array/list.
   // Pass true to the callback if it is, otherwise pass false.
-}
 
-// Solution
-function contains(item, list, cb) {
+  // Solution
   return cb(list.includes(item))
 }
 
@@ -113,7 +102,10 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+
+  // Solution
   let collection = []
+
   for (let i = 0; i < array.length; i++) {
     if (collection.indexOf(array[i]) === -1) {
       collection.push(array[i])
