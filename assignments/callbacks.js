@@ -113,4 +113,20 @@ function removeDuplicates(array, cb) {
   // removeDuplicates removes all duplicate values from the given array.
   // Pass the duplicate free array to the callback function.
   // Do not mutate the original array.
+  let collection = []
+  for (let i = 0; i < array.length; i++) {
+    if (collection.indexOf(array[i]) === -1) {
+      collection.push(array[i])
+    }
+  }
+  
+  return cb(collection)
 }
+
+// Invoke function
+let myArr = [1,3,4,1,1,3,4,5,1,2,78,3,9,3]
+removeDuplicates(myArr, function (myArr) {
+  console.log(myArr)
+})
+
+
