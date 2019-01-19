@@ -70,12 +70,6 @@ let allCaps = runners.map(function(runner) {
   return runner.first_name.toUpperCase()
 });
 
-// Solution Version 2
-// let allCaps = []
-// runners.map(function(runner) {
-//   allCaps.push(runner.first_name.toUpperCase())
-// })
-
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
@@ -100,22 +94,24 @@ console.log(ticketPriceTotal);
 const averageDonation = runners.map(function (runner) { return runner.donation })
   .reduce(function (total, num) { return (total + num) }) / runners.length
 
-console.log(averageDonation)
+console.log(`The average donation amount this year: $${averageDonation}`)
 
 // Problem 2 - How many companies were represented in this race?
 let companies = runners.map(function (runner) { return runner.company_name })
 let distinctCompanies = [...new Set(companies)]
 
-console.log(distinctCompanies.length)
+console.log(`Number of companies represented this year: ${distinctCompanies.length}`)
 
-// Problem 3 - To prevent the large t-shirt size debacle from happening again this year, 
-//the marketing team wants forecase orders for next year's race and 
+// Problem 3 - To prevent the large size t-shirt ordering debacle from happening again this year, 
+//the marketing team wants to forecast orders for next year's race and 
 //needs a breakdown of how many T-shirts were requested based on shirt size
-let sizes = runners.map(function (runner) { return runner.shirt_size })
-let sizeCategories = [...new Set(sizes)]
-console.log(sizeCategories)
+const sizes = runners.map(function (runner) { return runner.shirt_size })
+const sizeCategories = [...new Set(sizes)]
+const ordersByShirtSize = {}
 
 for (let i = 0; i < sizeCategories.length; i++) {
-  let size = runners.filter(function(runner) {return runner.shirt_size === sizeCategories[i]}) //closure example
-  console.log(`There were ${size.length} orders for ${sizeCategories[i]} size.`)
+  let size = runners.filter(function(runner) {return runner.shirt_size === sizeCategories[i]}) //closure example??
+  ordersByShirtSize[`${sizeCategories[i]}`] = size.length
 }
+
+console.log(ordersByShirtSize)
