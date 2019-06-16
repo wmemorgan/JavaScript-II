@@ -56,28 +56,62 @@ const runners = [{"id":1,"first_name":"Charmain","last_name":"Seiler","email":"c
 // ==== Challenge 1: Use .forEach() ====
 // The event director needs both the first and last names of each runner for their running bibs.  Combine both the first and last names into a new array called fullName. 
 let fullName = [];
+
+runners.forEach(function (runner) {
+  fullName.push(`${runner.first_name} ${runner.last_name}`)
+})
+
 console.log(fullName);
 
 // ==== Challenge 2: Use .map() ====
 // The event director needs to have all the runner's first names converted to uppercase because the director BECAME DRUNK WITH POWER. Convert each first name into all caps and log the result
-let allCaps = [];
+//Solution Version 1
+let allCaps = runners.map(function(runner) {
+  return runner.first_name.toUpperCase()
+});
+
 console.log(allCaps); 
 
 // ==== Challenge 3: Use .filter() ====
 // The large shirts won't be available for the event due to an ordering issue.  Get a list of runners with large sized shirts so they can choose a different size. Return an array named largeShirts that contains information about the runners that have a shirt size of L and log the result
-let largeShirts = [];
+let largeShirts = runners.filter(function(runner) {
+  return runner.shirt_size === "L"
+})
 console.log(largeShirts);
 
 // ==== Challenge 4: Use .reduce() ====
 // The donations need to be tallied up and reported for tax purposes. Add up all the donations into a ticketPriceTotal array and log the result
-let ticketPriceTotal = [];
+// Solution 
+let ticketPriceTotal = runners.map(function(runner) {return runner.donation})
+                              .reduce(function(total, num) {return total + num})
+
 console.log(ticketPriceTotal);
 
 // ==== Challenge 5: Be Creative ====
 // Now that you have used .forEach(), .map(), .filter(), and .reduce().  I want you to think of potential problems you could solve given the data set and the 5k fun run theme.  Try to create and then solve 3 unique problems using one or many of the array methods listed above.
 
-// Problem 1
+// Problem 1 - Find the average donation amount for this year's race?
+const averageDonation = runners.map(function (runner) { return runner.donation })
+  .reduce(function (total, num) { return (total + num) }) / runners.length
 
-// Problem 2
+console.log(`The average donation amount this year: $${averageDonation}`)
 
-// Problem 3
+// Problem 2 - How many companies were represented in this race?
+let companies = runners.map(function (runner) { return runner.company_name })
+let distinctCompanies = [...new Set(companies)]
+
+console.log(`Number of companies represented this year: ${distinctCompanies.length}`)
+
+// Problem 3 - To prevent the large size t-shirt ordering debacle from happening again this year, 
+//the marketing team wants to forecast orders for next year's race and 
+//needs a breakdown of how many T-shirts were requested based on shirt size
+const sizes = runners.map(function (runner) { return runner.shirt_size })
+const sizeCategories = [...new Set(sizes)]
+const ordersByShirtSize = {}
+
+for (let i = 0; i < sizeCategories.length; i++) {
+  let size = runners.filter(function(runner) {return runner.shirt_size === sizeCategories[i]}) //closure example??
+  ordersByShirtSize[`${sizeCategories[i]}`] = size.length
+}
+
+console.log(ordersByShirtSize)
